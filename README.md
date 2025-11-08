@@ -57,7 +57,7 @@ python app.py
 
 5. Open your browser and navigate to:
 ```
-http://localhost:5000
+http://localhost:5001
 ```
 
 6. To deactivate the virtual environment when done:
@@ -176,7 +176,7 @@ pip install -r requirements.txt
 # Run with debug mode
 python app.py
 
-# The app will run on http://localhost:5000
+# The app will run on http://localhost:5001
 ```
 
 ### Testing with Sample Data
