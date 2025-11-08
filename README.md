@@ -19,126 +19,135 @@ A modern, interactive web dashboard for exploring property listings with beautif
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### GitHub Pages (Static Hosting) - Recommended ⭐
 
-- Python 3.8 or higher
-- pip (Python package manager)
+The easiest way to use this dashboard:
 
-### Installation
-
-1. Clone the repository:
+1. **Clone and push to GitHub:**
 ```bash
 git clone <repository-url>
 cd microburbs
+git push origin main
 ```
 
-2. Create and activate virtual environment:
+2. **Enable GitHub Pages:**
+   - Go to your repository Settings
+   - Navigate to "Pages" section
+   - Select "main" branch as source
+   - Click Save
+
+3. **Visit your live site:**
+```
+https://yourusername.github.io/microburbs
+```
+
+That's it! The site works entirely in the browser with no server needed.
+
+### Local Development (Option 1: Direct File)
+
+Simply open `index.html` in your browser:
 ```bash
-# Create virtual environment
-python3 -m venv micro
-
-# Activate virtual environment
-# On macOS/Linux:
-source micro/bin/activate
-
-# On Windows:
-# micro\Scripts\activate
+open index.html  # macOS
+# or
+start index.html # Windows
+# or
+xdg-open index.html # Linux
 ```
 
-3. Install dependencies:
+### Local Development (Option 2: With Flask Server)
+
+If you want to run a local development server:
+
+1. Create and activate virtual environment:
+```bash
+python3 -m venv micro
+source micro/bin/activate  # macOS/Linux
+# micro\Scripts\activate   # Windows
+```
+
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Run the Flask application:
+3. Run the Flask server:
 ```bash
 python app.py
 ```
 
-5. Open your browser and navigate to:
+4. Open your browser:
 ```
 http://localhost:5001
-```
-
-6. To deactivate the virtual environment when done:
-```bash
-deactivate
 ```
 
 ## 📁 Project Structure
 
 ```
 microburbs/
-├── app.py                 # Flask backend with API proxy
-├── requirements.txt       # Python dependencies
-├── response.json         # Sample data for testing
-├── static/
-│   ├── index.html        # Main dashboard HTML
-│   ├── styles.css        # Modern, responsive CSS
-│   └── app.js           # Vanilla JavaScript for interactivity
-└── README.md            # This file
+├── index.html            # Main dashboard HTML (GitHub Pages entry point)
+├── styles.css            # Modern, responsive CSS
+├── app.js               # Vanilla JavaScript with direct API calls
+├── response.json        # Sample data fallback
+├── app.py               # Optional Flask server for local dev
+├── requirements.txt     # Python dependencies (optional)
+├── static/              # Legacy Flask static files
+└── README.md           # This file
 ```
 
 ## 🎯 Usage
 
-1. **Select a Suburb**: Choose from the dropdown list of available suburbs
+1. **Enter a Suburb**: Type any suburb name (e.g., "Belmont North", "Newcastle")
 2. **Filter by Property Type** (Optional): Select a specific property type (House, Unit, etc.)
-3. **Click Search**: View the results with interactive charts and property cards
-4. **Explore Data**: Scroll through property listings and view detailed information
+3. **Click Search** or press **Enter**: View results with interactive charts and property cards
+4. **Explore Data**: Scroll through property listings and detailed statistics
 
-## 🔌 API Endpoints
+### How It Works
 
-### Get Properties
-```
-GET /api/properties?suburb=<suburb>&property_type=<type>
-```
-
-**Parameters:**
-- `suburb` (required): Suburb name
-- `property_type` (optional): Property type filter
-
-**Example:**
-```bash
-curl "http://localhost:5000/api/properties?suburb=Belmont%20North&property_type=house"
-```
-
-### Get Suburbs List
-```
-GET /api/suburbs
-```
-
-Returns a list of available suburbs for the dropdown.
+- **Direct API Integration**: The app calls the Microburbs API directly from your browser
+- **No Backend Required**: Pure static site - works on GitHub Pages!
+- **Smart Fallback**: If the API is unavailable, it loads sample data from `response.json`
+- **CORS Friendly**: The Microburbs API supports cross-origin requests
 
 ## 🎨 Tech Stack
 
-- **Backend**: Python 3.8+, Flask 3.0
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript
-- **API**: Microburbs Property API
+- **Frontend**: HTML5, CSS3, Vanilla JavaScript (ES6+)
+- **API**: Microburbs Property API (direct integration)
+- **Hosting**: GitHub Pages (static hosting)
 - **Design**: Modern gradient UI with responsive design
+- **Optional Backend**: Python 3.8+, Flask 3.0 (for local development)
 
 ## 🌐 GitHub Pages Deployment
 
-For GitHub Pages deployment (static hosting), you have two options:
+### Deployment Steps
 
-### Option 1: Static Data Mode
-The app includes `response.json` as sample data. When the backend is not available, the dashboard will automatically load this sample data on startup.
+1. **Push your code to GitHub:**
+```bash
+git add .
+git commit -m "Deploy to GitHub Pages"
+git push origin main
+```
 
-1. Push your code to GitHub
-2. Enable GitHub Pages in repository settings
-3. The site will work with the sample data from `response.json`
+2. **Enable GitHub Pages:**
+   - Go to your repository **Settings**
+   - Click **Pages** in the sidebar
+   - Under "Source", select **main** branch
+   - Click **Save**
 
-### Option 2: Backend Deployment
-For full API functionality:
+3. **Access your live site:**
+```
+https://yourusername.github.io/microburbs
+```
 
-1. Deploy the Flask backend to a service like:
-   - Heroku
-   - Railway
-   - Render
-   - PythonAnywhere
+### How It Works
 
-2. Update the API endpoints in `app.js` to point to your deployed backend
+✅ **No server required** - Everything runs in the browser  
+✅ **Direct API calls** - JavaScript fetches data from Microburbs API  
+✅ **Smart fallback** - Uses `response.json` if API is unavailable  
+✅ **Zero cost** - Completely free GitHub Pages hosting  
 
-3. Deploy the `static/` folder to GitHub Pages
+### Note on API Token
+
+The API uses a demo token (`Bearer test`) which is included in the JavaScript. This is intentional and safe for demonstration purposes. For production use with a real API key, you would need a backend proxy.
 
 ## 📊 Data Visualization
 
