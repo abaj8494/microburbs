@@ -2,7 +2,7 @@
 let currentData = null;
 
 // DOM Elements
-const suburbSelect = document.getElementById('suburb-select');
+const suburbInput = document.getElementById('suburb-input');
 const propertyTypeSelect = document.getElementById('property-type-select');
 const searchBtn = document.getElementById('search-btn');
 const loadingEl = document.getElementById('loading');
@@ -11,7 +11,6 @@ const resultsSection = document.getElementById('results-section');
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
-    loadSuburbs();
     setupEventListeners();
     // Load sample data on startup
     loadSampleData();
@@ -20,31 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
 // Setup Event Listeners
 function setupEventListeners() {
     searchBtn.addEventListener('click', handleSearch);
-    suburbSelect.addEventListener('change', () => {
+    
+    // Allow search on Enter key
+    suburbInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    });
+    
+    suburbInput.addEventListener('input', () => {
         if (errorMessageEl) {
             errorMessageEl.classList.add('hidden');
         }
     });
-}
-
-// Load Suburbs List
-async function loadSuburbs() {
-    try {
-        const response = await fetch('/api/suburbs');
-        const data = await response.json();
-        
-        data.suburbs.forEach(suburb => {
-            const option = document.createElement('option');
-            option.value = suburb;
-            option.textContent = suburb;
-            suburbSelect.appendChild(option);
-        });
-        
-        // Set default suburb
-        suburbSelect.value = 'Belmont North';
-    } catch (error) {
-        console.error('Failed to load suburbs:', error);
-    }
 }
 
 // Load Sample Data (from response.json for GitHub Pages compatibility)
@@ -61,11 +48,11 @@ async function loadSampleData() {
 
 // Handle Search
 async function handleSearch() {
-    const suburb = suburbSelect.value;
+    const suburb = suburbInput.value.trim();
     const propertyType = propertyTypeSelect.value;
     
     if (!suburb) {
-        showError('Please select a suburb');
+        showError('Please enter a suburb name');
         return;
     }
     

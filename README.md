@@ -32,19 +32,37 @@ git clone <repository-url>
 cd microburbs
 ```
 
-2. Install dependencies:
+2. Create and activate virtual environment:
+```bash
+# Create virtual environment
+python3 -m venv micro
+
+# Activate virtual environment
+# On macOS/Linux:
+source micro/bin/activate
+
+# On Windows:
+# micro\Scripts\activate
+```
+
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Run the Flask application:
+4. Run the Flask application:
 ```bash
 python app.py
 ```
 
-4. Open your browser and navigate to:
+5. Open your browser and navigate to:
 ```
 http://localhost:5000
+```
+
+6. To deactivate the virtual environment when done:
+```bash
+deactivate
 ```
 
 ## 📁 Project Structure
@@ -147,6 +165,11 @@ The dashboard calculates and displays:
 
 ### Local Development
 ```bash
+# Create and activate virtual environment
+python3 -m venv micro
+source micro/bin/activate  # On macOS/Linux
+# micro\Scripts\activate   # On Windows
+
 # Install dependencies
 pip install -r requirements.txt
 
