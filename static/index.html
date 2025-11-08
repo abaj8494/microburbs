@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microburbs Property Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>🏠 Microburbs Property Dashboard</h1>
+                <p class="subtitle">Explore property listings with interactive data visualization</p>
+            </div>
+        </header>
+
+        <div class="search-section">
+            <div class="search-card">
+                <div class="search-form">
+                    <div class="form-group">
+                        <label for="suburb-select">Select Suburb</label>
+                        <select id="suburb-select" class="form-control">
+                            <option value="">-- Choose a suburb --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="property-type-select">Property Type (Optional)</label>
+                        <select id="property-type-select" class="form-control">
+                            <option value="">All Types</option>
+                            <option value="house">House</option>
+                            <option value="unit">Unit</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="townhouse">Townhouse</option>
+                        </select>
+                    </div>
+                    <button id="search-btn" class="btn btn-primary">
+                        <span>Search Properties</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Loading property data...</p>
+        </div>
+
+        <div id="error-message" class="error-message hidden"></div>
+
+        <div id="results-section" class="hidden">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <h3 id="total-properties">0</h3>
+                        <p>Total Properties</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <h3 id="avg-price">$0</h3>
+                        <p>Average Price</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏡</div>
+                    <div class="stat-content">
+                        <h3 id="avg-bedrooms">0</h3>
+                        <p>Avg Bedrooms</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📍</div>
+                    <div class="stat-content">
+                        <h3 id="location-name">-</h3>
+                        <p>Location</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-card">
+                    <h3>Price Distribution</h3>
+                    <div id="price-chart" class="chart"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Property Types</h3>
+                    <div id="type-chart" class="chart"></div>
+                </div>
+            </div>
+
+            <!-- Property Listings -->
+            <div class="properties-section">
+                <h2>Property Listings</h2>
+                <div id="properties-grid" class="properties-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
